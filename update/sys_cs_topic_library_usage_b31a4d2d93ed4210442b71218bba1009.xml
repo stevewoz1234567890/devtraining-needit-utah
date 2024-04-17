@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cs_topic_library_usage">
+    <sys_cs_topic_library_usage action="INSERT_OR_UPDATE">
+        <calling_cs_topic_id display_value="Get Help (Template)">af1a4d2d93ed4210442b71218bba1002</calling_cs_topic_id>
+        <library_cs_topic_id display_value="Contextual Search">d9dec393b3973300dbbf6030c6a8dc27</library_cs_topic_id>
+        <library_usage>{"type":"LibraryCall","library_topic_name":"Contextual Search","library_topic_id":"d9dec393b3973300dbbf6030c6a8dc27","parameter-mappings":[{"parameter-name":"context","value":{"type":"String","mode":"string","value":"5e973112f8455300964f8ada0264c0a5"},"metadata":{"type":"String","list":false,"items":[],"use_items":false}},{"parameter-name":"query","value":{"type":"String","mode":"string","value":"{{vaInputs.short_description}}"},"metadata":{"type":"String","list":false,"items":[],"use_items":false}},{"parameter-name":"portal","value":{"type":"String","mode":"string","value":"{{vaVars.portal}}"},"metadata":{"type":"String","list":false,"items":[],"use_items":false}},{"parameter-name":"kb_knowledge_base","value":{"type":"String","mode":"script","value":"(function execute() {\n    /* Return a quoted string.  For example:\n\n       var result;\n       if (vaInputs.first_name == 'Bill') {\n           return gs.getMessage('hi there {0}', [vaInputs.first_name]);\n       } else {\n           return gs.getMessage('how are you {0}', [vaInputs.last_name]);\n       }\n    */\n    return '';\n})()\n"},"metadata":{"type":"String","list":false,"items":[],"use_items":false}}],"return-value-mappings":[{"main_topic_variable_namespace":"vaInputs","library_topic_return_parameter_name":"results_returned","main_topic_mapped_variable_name":"results_returned"},{"main_topic_variable_namespace":"vaInputs","library_topic_return_parameter_name":"results_helpful","main_topic_mapped_variable_name":"results_helpful"},{"main_topic_variable_namespace":"vaInputs","library_topic_return_parameter_name":"ctx_search_details","main_topic_mapped_variable_name":"ctx_search_details"}],"id":"957118a964a94de59f48972513bc6e76","name":"Contextual Search","goal_id":"primary","applicability":{"type":"Applicability","mode":"script","value":"true"}}</library_usage>
+        <node_id>957118a964a94de59f48972513bc6e76</node_id>
+        <sys_class_name>sys_cs_topic_library_usage</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-04-13 15:16:36</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>b31a4d2d93ed4210442b71218bba1009</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_cs_topic_library_usage_b31a4d2d93ed4210442b71218bba1009</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-04-13 15:16:36</sys_updated_on>
+    </sys_cs_topic_library_usage>
+</record_update>

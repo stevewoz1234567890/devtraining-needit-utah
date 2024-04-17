@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_cb_topic">
+    <sys_cb_topic action="INSERT_OR_UPDATE">
+        <applicability/>
+        <applicability_mode>query</applicability_mode>
+        <autopilot_topic>false</autopilot_topic>
+        <category/>
+        <channels/>
+        <connect_queue/>
+        <description/>
+        <expose_on_palette>false</expose_on_palette>
+        <flexible_conversation_switching>false</flexible_conversation_switching>
+        <graph>{"graph_api_version":"1.0.42","variables":{"b80622f5e6a242c2a68e6e48f40e81b3":{"category":"vaInputs","id":"b80622f5e6a242c2a68e6e48f40e81b3","label":"User","name":"user","table":"sys_user","varType":"reference"},"77f6cdb037044a6fabeffbdc42b41781":{"id":"77f6cdb037044a6fabeffbdc42b41781","name":"answer","label":"Answer","defaultValue":"answer","varType":"string","category":"vaInputs","metadata":{"libraryMappingType":"output"},"preventDisable":true,"nodeId":"6b0cdc9f79e5467c92adb68f4583cc1d","isHidden":false},"e28996bddbd64f8fbc78e34d625a60c0":{"id":"e28996bddbd64f8fbc78e34d625a60c0","name":"switch_language","label":"Switch Language","varType":"boolean","secure":false,"category":"vaInputs","nodeId":"7c5d90f8c5914863ac91b2620c4de802","isHidden":false}},"goals":{"primary":{"id":"primary","trigger":{"type":"primary"},"name":"primary","applicability":"","description":"","nodes":{"726dffd1e47e4ece845c07da3b93c489":{"id":"726dffd1e47e4ece845c07da3b93c489","stepType":"Start","name":"Start","greetingResponse":{"mode":"simple","value":""}},"dfeffbcb5bbb47b6a0e0851b45aecdf7":{"id":"dfeffbcb5bbb47b6a0e0851b45aecdf7","stepType":"TerminateGoal","name":"End","confirmationMessage":{"mode":"simple","value":""}},"6b0cdc9f79e5467c92adb68f4583cc1d":{"id":"6b0cdc9f79e5467c92adb68f4583cc1d","stepType":"CustomControl","name":"Language Switch Control","fields":[],"applicability":{"value":"","mode":"query"},"reusableTopicChoice":"Language Switch Control","reusableTopicId":"60ce473853b230103296ddeeff7b1211","inputs":{},"outputs":[{"id":"77f6cdb037044a6fabeffbdc42b41781","value":"answer","mapping":"answer","preventDisable":true}],"variableIds":["77f6cdb037044a6fabeffbdc42b41781"],"outdatedNote":false,"loading":false},"1a0033e4f228475aaa08f6cc2e9aa833":{"id":"1a0033e4f228475aaa08f6cc2e9aa833","stepType":"Decision","name":"Decision"},"5bb6e491ef69444eba1ee0b1e3d2fd91":{"id":"5bb6e491ef69444eba1ee0b1e3d2fd91","name":"Topic Discovery","script":"(function execute() {\n    vaSystem.topicDiscovery();\n})()\n","stepType":"ScriptAction","applicability":{"value":"","mode":"query"}},"26eb26fadc6e4938b92779459e41d187":{"id":"26eb26fadc6e4938b92779459e41d187","stepType":"Decision","name":"Decision"},"7c5d90f8c5914863ac91b2620c4de802":{"id":"7c5d90f8c5914863ac91b2620c4de802","stepType":"Prompt","name":"Switch Language","prompt":{"value":"(function execute() {\n    var language = 'English';\n    var languageGR = new GlideRecord('sys_language');\n    if (languageGR.isValid()) {\n      languageGR.addQuery('id', vaVars.global_runtime_detected_language);\n      languageGR.query();\n    \n      if(languageGR.next()) {\n          language = languageGR.getValue('name');\n      }\n    }\n\n    var detectedLanguage = gs.getMessageLang(language, vaVars.global_runtime_detected_language);\n\n    return gs.getMessage('I have detected you are typing in {0}. Would you like to continue the conversation in {0}?', language) + '\\n\\n' +\n        gs.getMessageLang('I have detected you are typing in {0}. Would you like to continue the conversation in {0}?', vaVars.global_runtime_detected_language, detectedLanguage);\n})()\n","mode":"script"},"confirmMessage":{"value":"","mode":"simple"},"acknowledgeMsg":{"value":"","mode":"simple"},"applicability":{"value":"","mode":"query"},"skippable":{"value":"","mode":"query"},"defaultValue":{"value":"","mode":"simple"},"withNluUserInput":false,"skipIfFulfilled":false,"variableId":"e28996bddbd64f8fbc78e34d625a60c0"},"dfe60a7e98cf467ea345df74886818f7":{"id":"dfe60a7e98cf467ea345df74886818f7","stepType":"Decision","name":"Decision"},"6829ffafeaed4b5d9fefe04540f7e2e4":{"id":"6829ffafeaed4b5d9fefe04540f7e2e4","name":"Update Session Requester Language","script":"(function execute() {\n    gs.info('Virtual Agent Pre Topic Discovery Topic changing the global_requester_session_language to ' + vaVars.global_runtime_detected_language);\n    vaVars.global_requester_session_language = vaVars.global_runtime_detected_language;\n})()","stepType":"ScriptAction","applicability":{"value":"","mode":"query"}}},"edges":[{"id":"9b4634c7182047d3bd20b69780df4bc5","edgeType":"Edge","source":"6829ffafeaed4b5d9fefe04540f7e2e4","target":"5bb6e491ef69444eba1ee0b1e3d2fd91","sourcePort":"","targetPort":""},{"id":"6188ff199f6f40909b65a469682a3062","edgeType":"Branch","source":"1a0033e4f228475aaa08f6cc2e9aa833","target":"6829ffafeaed4b5d9fefe04540f7e2e4","sourcePort":"","targetPort":"","expression":{"mode":"script","value":"(function execute() {\n    return vaInputs.answer != 'No';\n})()\n"},"label":"Yes"},{"id":"f69df86f03be46bfaf30dbbfb8a8dd9a","edgeType":"Edge","source":"6b0cdc9f79e5467c92adb68f4583cc1d","target":"1a0033e4f228475aaa08f6cc2e9aa833","sourcePort":"","targetPort":""},{"id":"505b523ca57d4c0389c6b09eccedb46a","edgeType":"Branch","source":"1a0033e4f228475aaa08f6cc2e9aa833","target":"5bb6e491ef69444eba1ee0b1e3d2fd91","sourcePort":"","targetPort":"","expression":{"mode":"script","value":"(function execute() {\n    return vaInputs.answer == 'No';\n})()\n"},"label":"No"},{"id":"3efd1f3c4fd14a84ab415de7f5cb9b69","edgeType":"Edge","source":"5bb6e491ef69444eba1ee0b1e3d2fd91","target":"dfeffbcb5bbb47b6a0e0851b45aecdf7","sourcePort":"","targetPort":""},{"id":"6dde5e9e23764068874c571e5790a422","edgeType":"Edge","source":"726dffd1e47e4ece845c07da3b93c489","target":"26eb26fadc6e4938b92779459e41d187","sourcePort":"","targetPort":""},{"id":"b33082e2cc154213af46c36d682b059e","edgeType":"Branch","source":"26eb26fadc6e4938b92779459e41d187","target":"6b0cdc9f79e5467c92adb68f4583cc1d","sourcePort":"","targetPort":"","expression":{"mode":"script","value":"(function execute() {\n    return vaContext.deviceType == 'mweb';\n})()\n"},"label":"Device Type - mweb"},{"id":"ab5c3367eee34c7ba0ba81a293efb20c","edgeType":"Branch","source":"26eb26fadc6e4938b92779459e41d187","target":"7c5d90f8c5914863ac91b2620c4de802","sourcePort":"","targetPort":"","expression":{"mode":"query","value":""},"label":"Device Type - not mweb"},{"id":"0cf43f7ef4fb4911b59d332e00e44fa2","edgeType":"Edge","source":"7c5d90f8c5914863ac91b2620c4de802","target":"dfe60a7e98cf467ea345df74886818f7","sourcePort":"","targetPort":""},{"id":"50c74db9adc843d9b50b1f5f3fe0a30b","edgeType":"Branch","source":"dfe60a7e98cf467ea345df74886818f7","target":"6829ffafeaed4b5d9fefe04540f7e2e4","sourcePort":"","targetPort":"","expression":{"value":"vaInputs.switch_language=true","mode":"query"},"label":"Yes"},{"id":"2312b336f6b848878b9ddf6454bdf0fa","edgeType":"Branch","source":"dfe60a7e98cf467ea345df74886818f7","target":"5bb6e491ef69444eba1ee0b1e3d2fd91","sourcePort":"","targetPort":"","expression":{"value":"vaInputs.switch_language=","mode":"query"},"label":"No"}]}}}</graph>
+        <key_phrases>Pre Topic Discovery - test,Pre Topic Discovery</key_phrases>
+        <library>false</library>
+        <live_agent>false</live_agent>
+        <name>Pre Topic Discovery - test</name>
+        <nlu_intent/>
+        <nlu_intent_label/>
+        <nlu_model/>
+        <nlu_model_label/>
+        <nlu_provider/>
+        <palette_label/>
+        <roles>public</roles>
+        <root_topic_id>96ae8865cb5101103296b89e68076d32</root_topic_id>
+        <secure_custom_input_control>false</secure_custom_input_control>
+        <source_topic_id>96ae8865cb5101103296b89e68076d32</source_topic_id>
+        <sys_class_name>sys_cb_topic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-04-13 15:14:19</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_id>1299c1e993ed4210442b71218bba10bb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Pre Topic Discovery - test</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_cb_topic_1299c1e993ed4210442b71218bba10bb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-04-13 15:14:19</sys_updated_on>
+        <triggerable_by_notification>false</triggerable_by_notification>
+        <type>STANDARD</type>
+    </sys_cb_topic>
+</record_update>
